@@ -5,24 +5,28 @@ on:
     branches:
       - main
 
+# Añadimos esta variable a nivel global para cumplir con el requisito de 2026
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout del codigo
-        uses: actions/checkout@v4 # Actualizado de v3 a v4
+        uses: actions/checkout@v4
 
       - name: Configurar Node.js
-        uses: actions/setup-node@v4 # Actualizado de v3 a v4
+        uses: actions/setup-node@v4
         with:
-          node-version: '20' # Usamos una versión estable
+          node-version: '24' # Actualizamos a la versión recomendada
 
       - name: Instalar Surge
         run: npm install -g surge
 
       - name: Desplegar a Surge.sh
-        # Asegúrate de que este nombre sea único
-        run: surge ./ --domain tu-nombre-unico-2026.surge.sh
+        # Asegúrate de usar un subdominio único
+        run: surge ./ --hidekel>araujo-2026.surge.sh
         env:
           SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
