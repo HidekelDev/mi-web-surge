@@ -10,19 +10,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout del codigo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4 # Actualizado de v3 a v4
 
       - name: Configurar Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4 # Actualizado de v3 a v4
         with:
-          node-version: '18'
+          node-version: '20' # Usamos una versión estable
 
       - name: Instalar Surge
         run: npm install -g surge
 
       - name: Desplegar a Surge.sh
-        # CAMBIA 'tu-nombre-unico' por algo personalizado para tu tarea
-        run: surge ./ --practica-hidekel-itla.surge.sh
+        # Asegúrate de que este nombre sea único
+        run: surge ./ --domain tu-nombre-unico-2026.surge.sh
         env:
           SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
